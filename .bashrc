@@ -40,4 +40,18 @@ alias install='sudo apt-get install'
 alias sdn='sudo shutdown -h now'
 alias rsn='sudo shutdown -r now'
 
+#Edit this file
 
+alias brcedit='vim ~/.bashrc'
+
+# GODMODE
+
+alias godmode='sudo su'
+
+# fuck dis fuck dat
+
+alias fuck='killall'
+
+# version & cpu info
+
+alias version='cat /proc/version && cat /proc/cpuinfo'
