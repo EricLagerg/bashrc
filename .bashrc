@@ -55,3 +55,11 @@ alias fuck='killall'
 # version & cpu info
 
 alias version='cat /proc/version && cat /proc/cpuinfo'
+
+# some stuff for git
+
+alias ga='git add'
+
+alias gc='git commit'
+
+alias gp='git push'
