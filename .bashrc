@@ -1,3 +1,15 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
 # For when you forget sudo
 
 alias ffs='eval "sudo $(fc -ln -1)"'
@@ -21,7 +33,7 @@ alias publish='python3 -m http.server 8080'
 
 # Prints your current IP
 
-alias myIP='curl ifconfig.me'
+alias myip='curl ifconfig.me'
 
 # Cuase I cna't tyope rite
 
@@ -29,11 +41,17 @@ alias gerp='grep'
 
 # DO EVERYTHINGGGGGGGG
 
-alias up8='sudo apt-get update && sudo apt-get upgrade'
+alias lolup8='sudo yum update && sudo yum upgrade'
 
-# Condensing sudo apt-get install
+# Ok, that takes 4eva
 
-alias install='sudo apt-get install'
+alias up8='sudo yum update'
+
+alias up9='sudo yum upgrade'
+
+# Condensing sudo yum install
+
+alias install='sudo yum install'
 
 # Shutdown commands
 
@@ -63,3 +81,31 @@ alias ga='git add'
 alias gc='git commit'
 
 alias gp='git push'
+
+# other ips on network
+
+alias ipfind='sudo nmap -sP 192.168.1.0/24'
+
+# insta LS
+
+function cd {
+    dir="${@:-$HOME}"  # ~ isn't expanded when in quotes
+    [ -z "${dir}" ] && dir=~
+    if ! builtin cd "$dir"
+    then
+        dir=`compgen -d "${dir}" | head -1`
+        if builtin cd "$dir"
+        then
+            clear
+            pwd
+            ls -l
+        fi
+    else
+        clear
+        pwd
+        ls -l
+    fi
+}
+
+
+
