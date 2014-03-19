@@ -82,9 +82,18 @@ alias gc='git commit'
 
 alias gp='git push'
 
+alias cpbrc='cp .bashrc ~/bashrc'
+alias addbrc='git add .bashrc'
+alias commitbrc='git commit -m "new aliases and stuff"'
+alias pushbrc='git push origin master'
+
 # other ips on network
 
 alias ipfind='sudo nmap -sP 192.168.1.0/24'
+
+# again, I cannot speel correctly
+
+alias tial='tail'
 
 # insta LS
 
@@ -108,4 +117,6 @@ function cd {
 }
 
 
+# regex
 
+shopt -s extglob
