@@ -41,17 +41,18 @@ alias gerp='grep'
 
 # DO EVERYTHINGGGGGGGG
 
-alias lolup8='sudo yum update && sudo yum upgrade'
+#alias lolup8='sudo yum update && sudo yum upgrade'
 
 # Ok, that takes 4eva
 
-alias up8='sudo yum update'
+alias up8='sudo apt-get update'
 
-alias up9='sudo yum upgrade'
+alias up9='sudo apt-get upgrade'
 
 # Condensing sudo yum install
 
-alias install='sudo yum install'
+alias install='sudo apt-get install'
+alias remove='sudo apt-get purge'
 
 # Shutdown commands
 
@@ -96,6 +97,8 @@ alias ipfind='sudo nmap -sP 192.168.1.0/24'
 alias tial='tail'
 
 # insta LS
+
+alias lsa='ls -a'
 
 function cd {
     dir="${@:-$HOME}"  # ~ isn't expanded when in quotes
