@@ -78,12 +78,9 @@ alias version='cat /proc/version && cat /proc/cpuinfo'
 # some stuff for git
 
 alias ga='git add'
-
 alias gc='git commit'
-
 alias gp='git push'
-
-alias cpbrc='cp .bashrc ~/bashrc'
+alias cpbrc='cp .bashrc /home/eric/bashrc'
 alias addbrc='git add .bashrc'
 alias commitbrc='git commit -m "new aliases and stuff"'
 alias pushbrc='git push origin master'
@@ -110,12 +107,12 @@ function cd {
         then
             clear
             pwd
-            ls -l
+            ls -al
         fi
     else
         clear
         pwd
-        ls -l
+        ls -al
     fi
 }
 
