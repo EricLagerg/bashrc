@@ -15,6 +15,15 @@ fi
 alias ffs='eval "sudo $(fc -ln -1)"'
 alias please='eval "sudo $(fc -ln -1)"'
 
+# encrypted vim
+
+alias vimenc="vim -u ~/.encrypted_vim_rc -x filename.txt"
+alias vimx="vim -u ~/.encrypted_vim_rc -x"
+
+# TERMINATOR DESKTOP
+
+alias terminator_desktop='terminator_desktop --profile Desktop -b --geometry 1366x768+0+28 &'
+
 # To go back and stuff
 
 alias ..='cd ..'
@@ -107,16 +116,17 @@ function cd {
         then
             clear
             pwd
-            ls -al
+            ls -l
         fi
     else
         clear
         pwd
-        ls -al
+        ls -l
     fi
 }
 
 
 # regex
-
 shopt -s extglob
+#colors
+export TERM=xterm-256color
