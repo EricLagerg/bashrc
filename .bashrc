@@ -9,6 +9,16 @@ fi
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
+# To do immediately
+
+if [[ -f ~/.keychain/$HOST-sh ]] && [[ $UID != "0" ]]
+then
+    keychain ~/.ssh/id_dsa
+    . ~/.keychain/$HOST-sh > /dev/null
+fi
+
+export EDITOR=/usr/bin/vim
+export PATH=$PATH:/etc/cron.daily
 
 # For when you forget sudo
 
@@ -130,3 +140,4 @@ function cd {
 shopt -s extglob
 #colors
 export TERM=xterm-256color
+
