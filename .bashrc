@@ -13,7 +13,7 @@ fi
 
 if [[ -f ~/.keychain/$HOST-sh ]] && [[ $UID != "0" ]]
 then
-    keychain ~/.ssh/id_dsa
+    keychain ~/.ssh/id_rsa
     . ~/.keychain/$HOST-sh > /dev/null
 fi
 
@@ -97,9 +97,12 @@ alias version='cat /proc/version && cat /proc/cpuinfo'
 # some stuff for git
 
 alias ga='git add'
+alias gaa='git add -A'
 alias gc='git commit'
+alias gcm='git commit -m'
+alias gpom='git push origin master'
 alias gp='git push'
-alias cpbrc='cp .bashrc /home/eric/bashrc'
+alias cpbrc='cp ~/.bashrc /home/eric/bashrc'
 alias addbrc='git add .bashrc'
 alias commitbrc='git commit -m "new aliases and stuff"'
 alias pushbrc='git push origin master'
