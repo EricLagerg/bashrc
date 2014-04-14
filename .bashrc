@@ -11,14 +11,12 @@ fi
 # User specific aliases and functions
 # To do immediately
 
-if [[ -f ~/.keychain/$HOST-sh ]] && [[ $UID != "0" ]]
-then
-    keychain ~/.ssh/id_rsa
-    . ~/.keychain/$HOST-sh > /dev/null
-fi
-
 export EDITOR=/usr/bin/vim
-export PATH=$PATH:/etc/cron.daily
+
+# Because I always forget what #!'s file manager is
+alias filemanager='thunar'
+alias nautilus='thunar'
+alias whatthefuckisit='thunar'
 
 # For when you forget sudo
 
@@ -118,6 +116,7 @@ alias tial='tail'
 # insta LS
 
 alias lsa='ls -a'
+alias lsal='ls -al'
 
 function cd {
     dir="${@:-$HOME}"  # ~ isn't expanded when in quotes
@@ -138,9 +137,16 @@ function cd {
     fi
 }
 
+###########################################
+## This does something important I think ##
+###########################################
 
 # regex
 shopt -s extglob
 #colors
 export TERM=xterm-256color
 
+# random stuff
+
+alias ie7='wine C:\Program\ Files\\Internet\ Explorer\\iexplore'
+alias bob='curl http://www.bobrossquotes.com/text.php'
