@@ -15,6 +15,7 @@ fi
 ### SET PATHS AND EDITORS AND SUCH ###
 ######################################
 
+export PATH=/home/eric/autowget:$PATH
 export EDITOR=/usr/bin/vim
 
 ###############
@@ -236,6 +237,14 @@ function cd {
         ls -l
     fi
 }
+
+# only enter rsa passphrase once per login
+
+added_keys=`ssh-add -l`
+
+if [ ! $(echo $added_keys | grep -o -e id_rsa) ]; then
+       ssh-add "$HOME/.ssh/id_rsa"
+    fi
 
 ###########################################
 ## This does something important I think ##
