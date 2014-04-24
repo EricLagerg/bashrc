@@ -195,8 +195,8 @@ alias gcm='git commit -m'
 alias gpom='git push origin master'
 alias gp='git push'
 alias cpbrc='cp ~/.bashrc /home/eric/bashrc'
-alias addbrc='git add .bashrc'
-alias commitbrc='git commit -m "new aliases and stuff"'
+alias addbrc='cd ~/bashrc git add .bashrc'
+alias commitbrc='bashrc git commit -m "new aliases and stuff"'
 alias pushbrc='git push origin master'
 
 # other ips on network
@@ -207,6 +207,7 @@ alias ipfind='sudo nmap -sP 192.168.1.0/24'
 
 alias lsa='ls -a'
 alias lsal='ls -al'
+alias lsl='ls -l'
 
 # fun stuff
 
