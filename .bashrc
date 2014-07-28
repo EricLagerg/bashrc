@@ -15,7 +15,12 @@ fi
 ### SET PATHS AND EDITORS AND SUCH ###
 ######################################
 
-export PATH=/home/eric/autowget:$PATH
+#export PATH=/home/eric/autowget:$PATH
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export ANT_HOME=/usr/share/ant
+export ANDROID_HOME=$HOME/adt-bundle-linux-x86_64-20140321/sdk/tools
+export ANDROID_PLATFORM_TOOLS=$HOME/adt-bundle-linux-x86_64-20140321/sdk/platform-tools
+export PATH=$PATH:$ANT_HOME:$JAVA_HOME:$ANDROID_HOME:$ANDROID_PLATFORM_TOOLS
 export EDITOR=/usr/bin/vim
 
 ###############
@@ -115,10 +120,54 @@ On_IWhite='\e[0;107m'   # White
 ### SET ALIASES ###
 ###################
 
+# What's so big?
+
+alias big='du -hsx * | sort -rh | head -10'
+
+# https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/lol/lol.plugin.zsh
+
+alias rtfm='man'
+alias icanhas='mkdir'
+alias gimmeh='touch'
+alias donotwant='rm'
+alias dowant='cp'
+alias gtfo='mv'
+alias nowai='chmod'
+alias moar='more'
+alias tldr='less'
+
+# https://github.com/relevance/etc/blob/master/bash/aliases.sh
+
+alias h?='history | grep '
+
+# shorter for chromium
+
+alias chrome='chromium'
+
+# Redirect FF errors to /dev/null
+
+alias firefox='2>/dev/null 1>&2 firefox &'
+
+# random
+
+alias random='command fortune -a | fmt -80 -s | $(shuf -n 1 -e cowsay cowthink) -$(shuf -n 1 -e b d g p s t w y) -f $(shuf -n 1 -e $(cowsay -l | tail -n +2)) -n'
+alias calendar='sed -n "/$(date +%m\\/%d\\\|%b\*\ %d)/p" $(find ~/.calendar /usr/share/calendar -maxdepth 1 -type f -name "c*" 2>/dev/null);'
+
 # Because I always forget what #!'s file manager is
 alias filemanager='thunar'
 alias nautilus='thunar'
 alias whatthefuckisit='thunar'
+
+## New commands ##
+alias da='date "+%A, %B %d, %Y [%T]"'
+alias du1='du --max-depth=1'
+alias hist='history | grep'         # requires an argument
+alias openports='ss --all --numeric --processes --ipv4 --ipv6'
+alias pgg='ps -Af | grep'           # requires an argument
+
+# Because apparently OpenOffice != LibreOffice
+
+alias openoffice='libreoffice'
 
 # For when you forget sudo (better than sudo !!)
 
@@ -129,6 +178,10 @@ alias please='eval "sudo $(fc -ln -1)"'
 
 alias vimenc="vim -u ~/.encrypted_vim_rc -x filename.txt"
 alias vimx="vim -u ~/.encrypted_vim_rc -x"
+
+# Move everything back one dir
+
+alias backwards="find . -mindepth 1 -maxdepth 1 -exec mv -t.. -- {} +"
 
 # To go back and stuff
 
@@ -141,6 +194,9 @@ alias ......='cd ../../../../..'
 # Ping Google's DNS (can also ping 8.8.4.4)
 
 alias pong="ping 8.8.8.8 -c 4"
+alias pingdomain="ping google.com -c 4"
+alias pingserver="ping 173.194.33.130 -c 4"
+
 
 # Publish python 3 http server for current dir - can change the port I think
 
@@ -148,7 +204,8 @@ alias publish='python3 -m http.server 8080'
 
 # Prints your current IP
 
-alias myip='curl ifconfig.me'
+alias myip='curl -s icanhazip.com'
+alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # Cuase I cna't tyope rite
 
@@ -193,21 +250,32 @@ alias gaa='git add -A'
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gpom='git push origin master'
+alias gpgh='git push origin gh-pages'
 alias gp='git push'
 alias cpbrc='cp ~/.bashrc /home/eric/bashrc'
-alias addbrc='cd ~/bashrc git add .bashrc'
-alias commitbrc='bashrc git commit -m "new aliases and stuff"'
-alias pushbrc='git push origin master'
 
 # other ips on network
 
 alias ipfind='sudo nmap -sP 192.168.1.0/24'
+
+# SSH 
+
+alias home='ssh -p 5212 eric@76.121.113.163'
+alias thedinosaur='ssh -p 5212 eric@192.168.1.2'
+
+# Mysite
+
+alias mysite='mysite && exit'
 
 # because I use ls a lot
 
 alias lsa='ls -a'
 alias lsal='ls -al'
 alias lsl='ls -l'
+
+# because 2>/dev/null 1>&2 is hard to type
+
+alias no='1>/dev/null 2>&1'
 
 # fun stuff
 
