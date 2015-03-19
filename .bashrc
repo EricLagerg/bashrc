@@ -15,13 +15,32 @@ fi
 ### SET PATHS AND EDITORS AND SUCH ###
 ######################################
 
-#export PATH=/home/eric/autowget:$PATH
+export WTF=$HOME/bin
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 export ANT_HOME=/usr/share/ant
 export ANDROID_HOME=$HOME/adt-bundle-linux-x86_64-20140321/sdk/tools
 export ANDROID_PLATFORM_TOOLS=$HOME/adt-bundle-linux-x86_64-20140321/sdk/platform-tools
-export PATH=$PATH:$ANT_HOME:$JAVA_HOME:$ANDROID_HOME:$ANDROID_PLATFORM_TOOLS
 export EDITOR=/usr/bin/vim
+export PYTHONPATH=$HOME/github-repos/core/openelex
+export GOPATH=$HOME/gopath
+export GOBIN=$GOPATH/bin
+export OPENELEX_SETTINGS=$HOME/github-repos/openelections-core/settings.py
+export NIM_PATH=$HOME/nim/bin/
+export CIVIX_PATH=$HOME/github-repos/civicrm/civix
+export GEM_PATH=$HOME/.gem/ruby/2.2.0/bin
+
+export PATH=$PATH:$ANT_HOME:$JAVA_HOME:$ANDROID_HOME:$ANDROID_PLATFORM_TOOLS:/usr/local/go/bin:/sbin/:$NIM_PATH:$CIVIX_PATH:$WTF:$GOBIN:$GEM_PATH
+
+# Perl
+
+PERL_MB_OPT="--install_base \"/home/eric/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/eric/perl5"; export PERL_MM_OPT;
+
+
+# Python virt env
+
+source "/usr/bin/virtualenvwrapper.sh"
+export WORKON_HOME="/opt/virtual_env/"
 
 ###############
 ### COLORS ####
@@ -38,6 +57,10 @@ export TERM=xterm-256color
 
 #return value visualisation
 PS1="\[\033[01;37m\]\$? \$(if [[ \$? == 0 ]]; then echo \"\[\033[01;32m\];)\"; else echo \"\[\033[01;31m\];(\"; fi) $(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h'; else echo '\[\033[01;32m\]\u@\h'; fi)\[\033[01;34m\] \w \$\[\033[00m\] "
+
+# Prompt
+#PS1="$HC$FBLK[$FBLE\u$FBLK]$FBLK$FBLK[$FBLE\w$FBLK]\$$FBLK$RS "
+#PS1="$HC$FBLK┌─╼$FBLK[$FBLE\u$FBLK]$FBLK╾─╼$FBLK[$FBLE\w$FBLK]$FBLK\n└─╼$RS "
 
 trap 'echo -ne "\e[0m"' DEBUG
 
@@ -116,9 +139,62 @@ On_IPurple='\e[0;105m'  # Purple
 On_ICyan='\e[0;106m'    # Cyan
 On_IWhite='\e[0;107m'   # White
 
+# Color codes
+RS="\[\033[0m\]"    # reset
+HC="\[\033[1m\]"    # hicolor
+UL="\[\033[4m\]"    # underline
+INV="\[\033[7m\]"   # inverse background and foreground
+FBLK="\[\033[30m\]" # foreground black
+FRED="\[\033[31m\]" # foreground red
+FGRN="\[\033[32m\]" # foreground green
+FYEL="\[\033[33m\]" # foreground yellow
+FBLE="\[\033[34m\]" # foreground blue
+FMAG="\[\033[35m\]" # foreground magenta
+FCYN="\[\033[36m\]" # foreground cyan
+FWHT="\[\033[37m\]" # foreground white
+BBLK="\[\033[40m\]" # background black
+BRED="\[\033[41m\]" # background red
+BGRN="\[\033[42m\]" # background green
+BYEL="\[\033[43m\]" # background yellow
+BBLE="\[\033[44m\]" # background blue
+BMAG="\[\033[45m\]" # background magenta
+BCYN="\[\033[46m\]" # background cyan
+BWHT="\[\033[47m\]" # background white
+  
+# Colored ManPages:
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
 ###################
 ### SET ALIASES ###
 ###################
+
+# idk why i have to do this
+alias hurryup='sudo killall wpa_supplicant'
+
+# easily create a password
+alias pwpls='dd if=/dev/urandom bs=32 count=1 2> /dev/null | sha256sum | cut -b'
+
+# speed test
+alias howfast='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
+
+# battery %
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
+
+# BE SAFE
+alias rm='rm --preserve-root'
+
+# I suck
+alias CLEAR='clear'
+
+# I hate typing this
+
+alias null='2>/dev/null 1>&2 '
 
 # What's so big?
 
@@ -142,7 +218,7 @@ alias h?='history | grep '
 
 # shorter for chromium
 
-alias chrome='chromium'
+#alias chrome='chromium'
 
 # Redirect FF errors to /dev/null
 
@@ -214,18 +290,31 @@ alias tial='tail'
 
 # Condensing sudo yum update/upgrade
 
-alias up8='sudo apt-get update'
-alias up9='sudo apt-get upgrade'
+#alias up8='sudo apt-get update'
+#alias up9='sudo apt-get upgrade'
+
+alias up8='sudo pacman -Syy'
+alias up9='sudo pacman -Syu'
 
 # Condensing sudo yum install/remove
 
-alias install='sudo apt-get install'
-alias remove='sudo apt-get purge'
+#alias install='sudo apt-get install'
+#alias remove='sudo apt-get purge'
+
+alias install='sudo pacman -S'
+alias remove='sudo pacman -R'
+alias search='sudo pacman -Ss'
+alias create='sudo pacman -U'
+alias yolo='yaourt'
 
 # Shutdown commands
 
-alias sdn='sudo shutdown -h now'
-alias rsn='sudo shutdown -r now'
+# old
+#alias sdn='sudo shutdown -h now'
+#alias rsn='sudo shutdown -r now'
+
+alias sdn='sudo systemctl poweroff'
+alias rsn='sudo systemctl reboot'
 
 # Edit this file
 
@@ -261,7 +350,8 @@ alias ipfind='sudo nmap -sP 192.168.1.0/24'
 # SSH 
 
 alias home='ssh -p 5212 eric@76.121.113.163'
-alias thedinosaur='ssh -p 5212 eric@192.168.1.2'
+#alias thedinosaur='ssh -p 5212 eric@192.168.1.2'
+#alias home='ssh -p 5212 eric@67.183.194.9'
 
 # Mysite
 
@@ -281,6 +371,14 @@ alias no='1>/dev/null 2>&1'
 
 alias ie7='wine C:\\Program\ Files\\Internet\ Explorer\\iexplore'
 alias bob='curl http://www.bobrossquotes.com/text.php'
+
+# commands for i3
+alias halp='cat ~/.i3/config'
+
+# easier GCC
+alias gcc='gcc -Wall -Werror -Wextra -pedantic -std=c99'
+
+alias docstrip="unzip -p some.docx word/document.xml | sed -e 's/<[^>]\{1,\}>//g; s/[^[:print:]]\{1,\}//g'"
 
 #################
 ### FUNCTIONS ###
@@ -309,11 +407,11 @@ function cd {
 
 # only enter rsa passphrase once per login
 
-added_keys=`ssh-add -l`
+#added_keys=`ssh-add -l`
 
-if [ ! $(echo $added_keys | grep -o -e id_rsa) ]; then
-       ssh-add "$HOME/.ssh/id_rsa"
-    fi
+#if [ ! $(echo $added_keys | grep -o -e id_rsa) ]; then
+#       ssh-add "$HOME/.ssh/id_rsa"
+#fi
 
 ###########################################
 ## This does something important I think ##
@@ -321,4 +419,5 @@ if [ ! $(echo $added_keys | grep -o -e id_rsa) ]; then
 
 shopt -s extglob
 
-
+# check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
+shopt -s checkwinsize
