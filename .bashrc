@@ -27,9 +27,10 @@ export GOBIN=$GOPATH/bin
 export OPENELEX_SETTINGS=$HOME/github-repos/openelections-core/settings.py
 export NIM_PATH=$HOME/nim/bin/
 export CIVIX_PATH=$HOME/github-repos/civicrm/civix
-export GEM_PATH=$HOME/.gem/ruby/2.2.0/bin
+export kk=$HOME/.gem/ruby/2.2.0/bin
 
-export PATH=$PATH:$ANT_HOME:$JAVA_HOME:$ANDROID_HOME:$ANDROID_PLATFORM_TOOLS:/usr/local/go/bin:/sbin/:$NIM_PATH:$CIVIX_PATH:$WTF:$GOBIN:$GEM_PATH
+
+export PATH=$PATH:$ANT_HOME:$JAVA_HOME:$ANDROID_HOME:$ANDROID_PLATFORM_TOOLS:/usr/local/go/bin:/sbin/:$NIM_PATH:$CIVIX_PATH:$WTF:$GOBIN:$kk
 
 # Perl
 
@@ -174,8 +175,13 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 ### SET ALIASES ###
 ###################
 
+alias vims='vim $(fzf)'
+
+alias ls='ls --color=auto'
+
 # idk why i have to do this
-alias hurryup='sudo killall wpa_supplicant'
+# jk, dont have to anymore
+# alias hurryup='sudo killall wpa_supplicant'
 
 # easily create a password
 alias pwpls='dd if=/dev/urandom bs=32 count=1 2> /dev/null | sha256sum | cut -b'
@@ -376,7 +382,7 @@ alias bob='curl http://www.bobrossquotes.com/text.php'
 alias halp='cat ~/.i3/config'
 
 # easier GCC
-alias gcc='gcc -Wall -Werror -Wextra -pedantic -std=c99'
+alias gcc='gcc -Wall -Werror -Wextra -pedantic -std=gnu99'
 
 alias docstrip="unzip -p some.docx word/document.xml | sed -e 's/<[^>]\{1,\}>//g; s/[^[:print:]]\{1,\}//g'"
 
@@ -421,3 +427,4 @@ shopt -s extglob
 
 # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
