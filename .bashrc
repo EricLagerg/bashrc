@@ -38,10 +38,6 @@ PERL_MB_OPT="--install_base \"/home/eric/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/eric/perl5"; export PERL_MM_OPT;
 
 
-# Python virt env
-
-source "/usr/bin/virtualenvwrapper.sh"
-export WORKON_HOME="/opt/virtual_env/"
 
 ###############
 ### COLORS ####
@@ -344,6 +340,7 @@ alias ga='git add'
 alias gaa='git add -A'
 alias gc='git commit'
 alias gcm='git commit -m'
+alias gcmc='git commit -m "$(curl https://raw.githubusercontent.com/ngerakines/commitment/master/commit_messages.txt | shuf -n 1)"'
 alias gpom='git push origin master'
 alias gpgh='git push origin gh-pages'
 alias gp='git push'
@@ -381,10 +378,9 @@ alias bob='curl http://www.bobrossquotes.com/text.php'
 # commands for i3
 alias halp='cat ~/.i3/config'
 
-# easier GCC
-alias gcc='gcc -Wall -Werror -Wextra -pedantic -std=gnu99'
-
 alias docstrip="unzip -p some.docx word/document.xml | sed -e 's/<[^>]\{1,\}>//g; s/[^[:print:]]\{1,\}//g'"
+
+alias randcommit="curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s'"
 
 #################
 ### FUNCTIONS ###
